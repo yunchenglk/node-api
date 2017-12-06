@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"ICOS-20171126ML-10160-stderr-1511997652701.txt","computername":"ICOS-20171126ML","pid":10160,"type":"stderr","created":1511997652701},{"file":"ICOS-20171126ML-10160-stdout-1511997652699.txt","computername":"ICOS-20171126ML","pid":10160,"type":"stdout","created":1511997652699},{"file":"ICOS-20171126ML-2620-stderr-1511992947088.txt","computername":"ICOS-20171126ML","pid":2620,"type":"stderr","created":1511992947088},{"file":"ICOS-20171126ML-2620-stdout-1511992947087.txt","computername":"ICOS-20171126ML","pid":2620,"type":"stdout","created":1511992947087},{"file":"ICOS-20171126ML-4612-stderr-1511997676646.txt","computername":"ICOS-20171126ML","pid":4612,"type":"stderr","created":1511997676646},{"file":"ICOS-20171126ML-4612-stdout-1511997676644.txt","computername":"ICOS-20171126ML","pid":4612,"type":"stdout","created":1511997676644},{"file":"ICOS-20171126ML-7300-stderr-1512001444687.txt","computername":"ICOS-20171126ML","pid":7300,"type":"stderr","created":1512001444687},{"file":"ICOS-20171126ML-7300-stdout-1512001444685.txt","computername":"ICOS-20171126ML","pid":7300,"type":"stdout","created":1512001444685}];
+        var lastUpdated = 1512001444908;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

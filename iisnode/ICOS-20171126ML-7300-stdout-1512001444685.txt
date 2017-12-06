@@ -1,0 +1,8 @@
+api.com
+写入cookie
+{ name: '123', age: 18 }
+a
+api.com
+写入cookie
+{ name: '123', age: 18 }
+a
