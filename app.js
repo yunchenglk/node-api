@@ -7,7 +7,7 @@ var auth = require('./lib/authority');
 var app = express();
 app.use(cookieParser("likui"));
 app.use(function (req, res, next) {
-    res.cookie('name', { name: "123", age: 18 }, { signed: true });
+     res.cookie('name', { name: "123", age: 18 }, { signed: true });
     next();
 });
 
