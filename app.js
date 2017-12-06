@@ -20,4 +20,5 @@ app.get('/', function (req, res) {
 });
 app.use('/class', auth.isAuthenticated, require('./routes/Class'));
 
+console.log('ok');
 app.listen(process.env.PORT || 3000);
