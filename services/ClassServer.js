@@ -21,7 +21,6 @@ module.exports = {
      * @param id 栏目ID
      */
     Single: function (id, callback) {
-        console.log(id);
         _db.findOne("Class", { ID: id.toLowerCase() }, function (err, data) {
             if (err) {
                 logger.error('根据ID查询一个栏目失败');
@@ -30,7 +29,7 @@ module.exports = {
                 callback(err, data);
             }
         })
-        
+
 
     },
     /**
@@ -38,7 +37,7 @@ module.exports = {
      * @param cid 公司ID
      */
     GetEnumByCID: function (cid, callback) {
-        _db.find("Class",{CompanyID:cid.toLowerCase()},function(err, data){
+        _db.find("Class", { CompanyID: cid.toLowerCase() }, function (err, data) {
             if (err) {
                 logger.error('获取公司下所有栏目失败');
                 callback(err, null);
