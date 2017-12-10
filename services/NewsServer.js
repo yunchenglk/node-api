@@ -1,5 +1,6 @@
 var _db = require('../lib/_db');
 var logger = require('pomelo-logger').getLogger('mongodb-log');
+var page = require('./getPageServer');
 module.exports = {
     /**
      * 根据ID
@@ -68,5 +69,8 @@ module.exports = {
                 })
                 break;
         }
+    },
+    GetPage:function(){
+    
     }
 }
