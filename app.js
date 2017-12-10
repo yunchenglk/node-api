@@ -19,6 +19,8 @@ app.get('/', function (req, res) {
     res.send("ok");
 });
 app.use('/class', auth.isAuthenticated, require('./routes/Class'));
-
+app.use('/content', auth.isAuthenticated, require('./routes/Content'));
+app.use('/file', auth.isAuthenticated, require('./routes/Files'));
+app.use('/news', auth.isAuthenticated, require('./routes/News'));
 
 app.listen(process.env.PORT || 3000);
