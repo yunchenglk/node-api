@@ -17,11 +17,7 @@ app.set('view engine', 'html');
 
 
 app.get('/', function (req, res) {
-    _db.getPage("Class", { index: 1, size: 2 }, {}, {}, function (err, data) {
-        console.log(data);
-        //     res.send("ok");
-    })
-    res.send("ok");
+  
 });
 app.use('/class', auth.isAuthenticated, require('./routes/Class'));
 app.use('/content', auth.isAuthenticated, require('./routes/Content'));
