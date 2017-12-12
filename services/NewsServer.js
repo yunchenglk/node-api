@@ -1,6 +1,5 @@
 var _db = require('../lib/_db');
 var logger = require('pomelo-logger').getLogger('mongodb-log');
-var page = require('./getPageServer');
 module.exports = {
     /**
      * 根据ID
@@ -70,7 +69,20 @@ module.exports = {
                 break;
         }
     },
-    GetPage:function(){
-    
+    /**
+     * @param pageInfo:{index:当前页码，size:每页多少条信息}
+     * @param conditions 查询条件 {a:1, b:2}
+     * @param  options 选项：{fields: "a b c", sort: {time: -1}}
+     */
+    GetPage: function (pageInfo, conditions, options, callback) {
+        _db.getPage("Class", pageInfo, conditions, options, function (err, data) {
+            if (err) {
+                logger.error('获取分页失败');
+                callback(err, null);
+            } else {
+                callback(err, data);
+            }
+        })
+
     }
 }

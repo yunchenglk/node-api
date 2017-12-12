@@ -10,4 +10,22 @@ router.get('/:id', function (req, res, next) {
             res.json();
     })
 });
+router.get('/:cid/:attr/:count', function (req, res, next) {
+    var par = req.params;
+    db.GetEnumByType(par.cid, par.attr, par.count, function (err, data) {
+        if (!err)
+            res.json(data);
+        else
+            res.json();
+    })
+});
+router.post('page/:pageInfo/:conditions/:options', function (req, res, next) {
+    var par = req.params;
+    db.GetPage(par.pageInfo, par.conditions, par.options, function (err, data) {
+        if (!err)
+            res.json(data);
+        else
+            res.json();
+    })
+})
 module.exports = router;
