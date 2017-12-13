@@ -17,10 +17,9 @@ app.engine('html', exphbs.create({ defaultLayout: 'main', extname: '.html' }).en
 app.set('view engine', 'html');
 
 
-app.get('/', function (req, res) {
-    _user.login("ksj", "000000.", "ef75e28c-df2d-4f77-959d-043026215a4d", function (err, data) {
-        res.send(data);
-    })
+app.get('/', auth.isAuthenticated, function (req, res, next) {
+    res.end("default");
+    next();
 });
 app.use('/class', auth.isAuthenticated, require('./routes/Class'));
 app.use('/content', auth.isAuthenticated, require('./routes/Content'));
